@@ -1,3 +1,24 @@
 /* 
     General Styles
 */
+body{
+    background-image: url("https://images.wallpaperscraft.com/image/stars_space_dark_139528_1920x1080.jpg");
+    background-size: cover;
+}  
+#yellow, .nav-text, .card-title, h3{
+    color: rgb(219,169,13);
+}
+.nav-text {
+    font-size: 20px;
+}
+.shadowp{
+    text-shadow: 2px 2px 4px #000000;
+}
+.carousel{
+    box-shadow: 0 0 30px rgba(235, 33, 46, 0.651);
+}
+#login{
+    background-image: url("https://i.pinimg.com/originals/77/cb/11/77cb1160b40abf3d8ae173c5789aa777.jpg");
+    background-size: cover;
+}
+

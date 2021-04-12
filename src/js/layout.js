@@ -2,14 +2,18 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
+import { Characters } from "./views/characters";
+import { Planets } from "./views/planets";
 import { Home } from "./views/home";
-import { Demo } from "./views/demo";
-import { Single } from "./views/single";
+import { CharactersDet } from "./views/charactersDetails";
+import { PlanetsDet } from "./views/planetsDetails";
+
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-
+import { Carousel } from "./views/carousel";
+import { NavLog } from "./component/navlog";
 //create your first component
 const Layout = () => {
 	//the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -17,25 +21,42 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	return (
-		<div className="d-flex flex-column">
+		<div className="d-flex flex-column h-100">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					<Navbar />
 					<Switch>
 						<Route exact path="/">
+							<NavLog />
 							<Home />
 						</Route>
-						<Route exact path="/demo">
-							<Demo />
+
+						<Route exact path="/home">
+							<Navbar />
+							<Carousel />
+							<Footer />
 						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
+						<Route exact path="/characters">
+							<Navbar />
+							<Characters />
+							<Footer />
 						</Route>
-						<Route>
-							<h1>Not found!</h1>
+						<Route exact path="/characters/:id">
+							<Navbar />
+							<CharactersDet />
+							<Footer />
 						</Route>
+						<Route exact path="/planets">
+							<Navbar />
+							<Planets />
+							<Footer />
+						</Route>
+						<Route exact path="/planets/:id">
+							<Navbar />
+							<PlanetsDet />
+							<Footer />
+						</Route>
+						<Route>Not Found</Route>
 					</Switch>
-					<Footer />
 				</ScrollToTop>
 			</BrowserRouter>
 		</div>
