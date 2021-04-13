@@ -20,7 +20,7 @@ export const NavLog = () => {
 				</span>
 			</Link>
 
-			<div className="navbar-nav mr-auto form-inline font-weight-bolder">
+			{/* <div className="navbar-nav mr-auto form-inline font-weight-bolder">
 				<Link to="/characters">
 					<div className="nav-item ">
 						<a className="nav-text mr-3" href="#">
@@ -37,7 +37,7 @@ export const NavLog = () => {
 						</a>
 					</div>
 				</Link>
-			</div>
+			</div> */}
 		</nav>
 	);
 };

@@ -5,6 +5,8 @@ import { Context } from "../store/appContext";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
+	const { user, setUser } = useState("");
+	const { password, setPassword } = useState("");
 	return (
 		<div className="container-fluid" id="login">
 			<div className="row">
@@ -32,19 +34,35 @@ export const Home = () => {
 						after the camp, Artoo.
 					</p>
 				</div>
-				<div className="col-6 d-flex justify-content-center">
+				<div className="col-6 d-flex justify-content-center align-content-center">
 					<div className="col-3"> </div>
-					<div className="card text-center col-6 mt-5 p-0 bg-dark">
+					<div className="card text-center col-6 h-50 mt-5 p-0 bg-dark">
 						<div className="card-header">
 							<h2 className="text-white">Login</h2>
 						</div>
 						<div className="card-body pb-2">
-							<input className="rounded mb-3" type="text" placeholder="username" />
+							<input
+								className="rounded mb-3"
+								type="text"
+								value={user}
+								onChange={e => {
+									setUser(e.target.value);
+								}}
+								placeholder="username"
+							/>
 							<br />
-							<input className="rounded mb-3" type="password" placeholder="password" />
+							<input
+								className="rounded mb-3"
+								type="password"
+								value={password}
+								onChange={e => {
+									setPassword(e.target.value);
+								}}
+								placeholder="password"
+							/>
 						</div>
 						<div className="card-footer ">
-							<button className="btn btn-outline-warning ml-1" type="button">
+							<button onClick={()=>{actions.handleLogin(user, password)}} className="btn btn-outline-warning ml-1" type="button">
 								Log In
 							</button>
 							<button className="btn btn-outline-warning ml-1" type="button">

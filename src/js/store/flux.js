@@ -8,18 +8,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 			// Use getActions to call a function within a fuction
 			getPeople: async () => {
-				await fetch("https://swapi.dev/api/people/")
+				await fetch("https://3000-amethyst-krill-i0j4c55p.ws-us03.gitpod.io/character")
 					.then(res => res.json())
-					.then(data => setStore({ people: data.results }))
+					.then(data => setStore({ people: data }))
 					.catch(err => console.error(err));
 			},
 
 			getPlanets: async () => {
-				await fetch("https://swapi.dev/api/planets/")
+				await fetch("https://3000-amethyst-krill-i0j4c55p.ws-us03.gitpod.io/planet")
 					.then(res => res.json())
-					.then(data => setStore({ planets: data.results }))
+					.then(data => setStore({ planets: data }))
 					.catch(err => console.error(err));
 			},
+
+			// handleLogin: (user, password) => {
+            //     fetch("https://3000-amethyst-krill-i0j4c55p.ws-us03.gitpod.io/login", {
+            //         method="POST",  
+            //         headers: {
+            //         'Content-Type': 'application/json'
+            //         },
+            //         body: JSON.stringify({
+            //         "username": user,
+            //         "password": password
+            //         })
+            //     })
+            //     .then(res => res.json())
+            //     .then(data => console.log(data))
+            //     .catch(err => console.error(err));
+            // },
 
 			getFavCharacters: index => {
 				const store = getStore();
