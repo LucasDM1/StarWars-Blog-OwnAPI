@@ -21,21 +21,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(err => console.error(err));
 			},
 
-			// handleLogin: (user, password) => {
-            //     fetch("https://3000-amethyst-krill-i0j4c55p.ws-us03.gitpod.io/login", {
-            //         method="POST",  
-            //         headers: {
-            //         'Content-Type': 'application/json'
-            //         },
-            //         body: JSON.stringify({
-            //         "username": user,
-            //         "password": password
-            //         })
-            //     })
-            //     .then(res => res.json())
-            //     .then(data => console.log(data))
-            //     .catch(err => console.error(err));
-            // },
+			handleLogin: (user, password) => {
+				fetch("https://3000-amethyst-krill-i0j4c55p.ws-us03.gitpod.io/login", {
+					method: "POST", // or 'POST'
+					body: JSON.stringify({
+						username: user,
+						password: password
+					}), // data can be `string` or {object}!
+					headers: {
+						"Content-Type": "application/json"
+					}
+				})
+					.then(res => res.json())
+					.then(data => console.log(data))
+					.catch(err => console.error("Error ", err));
+			},
 
 			getFavCharacters: index => {
 				const store = getStore();

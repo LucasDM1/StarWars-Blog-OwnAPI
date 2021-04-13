@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
+// import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
 import { Context } from "../store/appContext";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
-	const { user, setUser } = useState("");
-	const { password, setPassword } = useState("");
+	const [user, setUser] = useState("");
+	const [password, setPassword] = useState("");
+	// const token = sessionStorage.getItem("token");
+
 	return (
 		<div className="container-fluid" id="login">
 			<div className="row">
@@ -45,9 +48,7 @@ export const Home = () => {
 								className="rounded mb-3"
 								type="text"
 								value={user}
-								onChange={e => {
-									setUser(e.target.value);
-								}}
+								onChange={e => setUser(e.target.value)}
 								placeholder="username"
 							/>
 							<br />
@@ -55,14 +56,17 @@ export const Home = () => {
 								className="rounded mb-3"
 								type="password"
 								value={password}
-								onChange={e => {
-									setPassword(e.target.value);
-								}}
+								onChange={e => setPassword(e.target.value)}
 								placeholder="password"
 							/>
 						</div>
 						<div className="card-footer ">
-							<button onClick={()=>{actions.handleLogin(user, password)}} className="btn btn-outline-warning ml-1" type="button">
+							<button
+								onClick={() => {
+									actions.handleLogin(user, password);
+								}}
+								className="btn btn-outline-warning ml-1"
+								type="button">
 								Log In
 							</button>
 							<button className="btn btn-outline-warning ml-1" type="button">
