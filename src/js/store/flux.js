@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			tokenS: "",
 			people: [],
 			planets: [],
 			favorites: []
@@ -33,7 +34,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 					.then(res => res.json())
-					.then(data => console.log(data))
+					.then(data => {
+						console.log(data),
+							sessionStorage.setItem("token", data.token),
+							setStore({ tokenS: data.token });
+					})
 					.catch(err => console.error("Error ", err));
 			},
 
