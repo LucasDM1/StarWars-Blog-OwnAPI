@@ -7,7 +7,6 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const [user, setUser] = useState("");
 	const [password, setPassword] = useState("");
-
 	const history = useHistory();
 	const token = sessionStorage.getItem("token");
 
@@ -64,11 +63,6 @@ export const Home = () => {
 									onChange={e => setPassword(e.target.value)}
 									placeholder="password"
 								/>
-								{store.problem == null ? null : (
-									<div className="alert alert-danger" role="alert">
-										{store.problem}
-									</div>
-								)}
 							</div>
 							<div className="card-footer ">
 								<button

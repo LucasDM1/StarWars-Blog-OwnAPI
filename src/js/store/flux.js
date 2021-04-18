@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			tokenS: "",
+			problem: null,
 			people: [],
 			planets: [],
 			favorites: []
@@ -33,13 +34,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				})
-					.then(res => res.json())
+					.then(res => {
+						if (res.status != 200) {
+							setStore({ problem: "Wrong username or password" });
+						} else {
+							setStore({ problem: null });
+							return res.json();
+						}
+					})
 					.then(data => {
 						console.log(data),
 							sessionStorage.setItem("token", data.token),
 							setStore({ tokenS: data.token });
 					})
 					.catch(err => console.error("Error ", err));
+			},
+
+			LogOut: () => {
+				sessionStorage.removeItem("token");
+				setStore({ tokenS: "" });
 			},
 
 			getFavCharacters: index => {

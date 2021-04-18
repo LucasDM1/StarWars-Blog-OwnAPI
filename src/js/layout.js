@@ -55,7 +55,9 @@ const Layout = () => {
 							<PlanetsDet />
 							<Footer />
 						</Route>
-						<Route>Not Found</Route>
+						<Route>
+							<h5 id="yellow">These aren&apos;t the droids you&apos;re looking for</h5>
+						</Route>
 					</Switch>
 				</ScrollToTop>
 			</BrowserRouter>

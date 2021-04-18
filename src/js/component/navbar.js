@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { Context } from "../store/appContext";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
-
+	const history = useHistory();
 	return (
 		<nav className="navbar navbar-expand-sm navbar-light bg-dark mb-3">
 			<Link to="/home">
@@ -68,6 +69,17 @@ export const Navbar = () => {
 						<span className="dropdown-itemjustify-content-center text-white pl-3"> (empty) </span>
 					)}
 				</div>
+			</div>
+			<div className="nav-item button">
+				<button
+					className="btn btn-outline-danger"
+					onClick={() => {
+						actions.LogOut();
+						history.push("/");
+					}}
+					type="button">
+					Log out
+				</button>
 			</div>
 		</nav>
 	);
