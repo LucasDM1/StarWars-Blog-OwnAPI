@@ -3,84 +3,122 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export const Home = () => {
+export const Register = () => {
 	const { store, actions } = useContext(Context);
+
+	const [name, setName] = useState("");
+	const [lastname, setLastname] = useState("");
 	const [user, setUser] = useState("");
 	const [password, setPassword] = useState("");
+	const [email, setEmail] = useState("");
 	const history = useHistory();
-	const token = sessionStorage.getItem("token");
 
-	if (token && token != "" && token !== "undefined" && token !== undefined && token !== null) {
-		history.push("/home");
-		return null;
-	} else {
-		return (
-			<div className="container-fluid" id="login">
-				<div className="row">
-					<div className="col-6 pl-5 mb-5">
-						<h1 id="yellow">Learn about the amazing universe of Star Wars with this database</h1>
-						<p className="text-white">
-							All troops will debark for ground assault. Prepare to target the main generator. Rouge Two,
-							are you all right? Yeah. Im with you, Rouge Leader. Well set harpoon. Ill cover for you.
-							Coming around. Watch that cross fire, boys. Set for position three. Steady. Stay tight and
-							low. Hobbie, Ive been hit! Put Captain Solo in the cargo hold. Artoo! Artoo! Where have you
-							been? Turn around, you wooly...! Hurry, hurry! Were trying to save Han from the bounty
-							hunter! Well, at least your still in one piece! Look what happened to me! Oh, no! Chewie,
-							theyre behind you! Artoo says the chances of survival are seven hundred seventy-five...to
-							one. Actually, Artoo has been known to make mistakes...from time to time. Oh, dear, oh,
-							dear. Dont worry about Master Luke. Im sure hell be all right. Hes quite clever, you
-							know...for a human being. Excuse me, sir. Might I inqu-... Excuse me, sir. Might I inqu-...
-							Yes, sir? Do you know where Commander Skywalker is? I haven t seen him. It s possible he
-							came in through the south entrance. It s possible? Why don t you go find out? It s getting
-							dark out there. Yes, sir. Excuse me, sir. Might I inquire what s going on? Why not?
-							{/* Impossible man. Come along, Artoo, lets find Princess Leia. Between ourselves, I think Master Luke
-                        is in considerable danger. Now will you move along, little fella? We are got a lot of work to do.
-                        No! No, no! Stay and help you, I will. Find your friend, hmm? I m not looking for a friend, I m
-                        looking for a Jedi Master. Oohhh. Jedi Master. Yoda. You seek Yoda. You know him? Mmm. Take you to
-                        him, I will. Yes, yes. But now, we must eat. Come. Good food. Come. Come, come. Stay here and watch */}
-							after the camp, Artoo.
-						</p>
-					</div>
-					<div className="col-6 d-flex justify-content-center align-content-center">
-						<div className="col-3"> </div>
-						<div className="card text-center col-6 h-50 mt-5 p-0 bg-dark">
-							<div className="card-header">
-								<h2 className="text-white">Login</h2>
-							</div>
-							<div className="card-body pb-2 px-1">
-								<input
-									className=" mb-3 w-100 h-20"
-									type="text"
-									value={user}
-									onChange={e => setUser(e.target.value)}
-									placeholder="username"
-								/>
-								<br />
-								<input
-									className=" mb-3 w-100 h-20"
-									type="password"
-									value={password}
-									onChange={e => setPassword(e.target.value)}
-									placeholder="password"
-								/>
-							</div>
-							<div className="card-footer ">
+	return (
+		<div className="container-fluid w-100 h-100 pt-5 pb-5 text-white" id="login">
+			<div className="row justify-content-center">
+				<div className="col-6">
+					<div className="card text-center bg-dark">
+						<div className="card-header">
+							<h2 className="text-white" id="yellow">
+								Register
+							</h2>
+						</div>
+						<div className="card-body text-left text-white">
+							<form>
+								<div className="row">
+									<div className="col-6 mb-3">
+										<label htmlFor="name" className="form-label">
+											Name
+										</label>
+										<input
+											type="text"
+											value={name}
+											onChange={e => setName(e.target.value)}
+											className="form-control"
+											id="name"
+											required
+										/>
+									</div>
+									<div className="col-6 mb-3">
+										<label htmlFor="lastname" className="form-label">
+											Lastname
+										</label>
+										<input
+											type="text"
+											value={lastname}
+											onChange={e => setLastname(e.target.value)}
+											className="form-control"
+											id="lastname"
+											required
+										/>
+									</div>
+								</div>
+
+								<div className="mb-3">
+									<label htmlFor="email" className="form-label">
+										Email address
+									</label>
+									<input
+										type="email"
+										value={email}
+										onChange={e => setEmail(e.target.value)}
+										className="form-control"
+										id="email"
+										required
+									/>
+								</div>
+
+								<div className=" mb-3">
+									<label htmlFor="Username" className="form-label">
+										Username
+									</label>
+									<input
+										type="text"
+										value={user}
+										onChange={e => setUser(e.target.value)}
+										className="form-control"
+										id="username"
+										required
+									/>
+								</div>
+								<div className=" mb-3">
+									<label htmlFor="exampleInputPassword1" className="form-label">
+										Password
+									</label>
+									<input
+										type="password"
+										value={password}
+										onChange={e => setPassword(e.target.value)}
+										className="form-control"
+										id="exampleInputPassword1"
+										required
+									/>
+								</div>
+							</form>
+							{store.registerProblem == null ? null : (
+								<div className="alert alert-danger" role="alert">
+									{store.registerProblem}
+								</div>
+							)}
+						</div>
+						<div className="card-footer">
+							<div className="btn-group mx-2" role="group" aria-label="First group">
 								<button
-									onClick={() => {
-										actions.handleLogin(user, password);
-									}}
-									className="btn btn-outline-warning ml-1"
-									type="button">
-									Log In
-								</button>
-								<button className="btn btn-outline-warning ml-1" type="button">
+									type="submit"
+									onClick={() => actions.handleRegister(name, lastname, email, user, password)}
+									className="btn btn-outline-success ml-3">
 									Register
 								</button>
 							</div>
+							<Link to="/">
+								<button type="button" className="btn btn-outline-danger">
+									Go to Log in
+								</button>
+							</Link>
 						</div>
 					</div>
 				</div>
 			</div>
-		);
-	}
+		</div>
+	);
 };

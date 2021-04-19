@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			tokenS: "",
 			problem: null,
+			registerProblem: null,
 			people: [],
 			planets: [],
 			favorites: []
@@ -25,7 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			handleLogin: (user, password) => {
 				fetch("https://3000-amethyst-krill-i0j4c55p.ws-us03.gitpod.io/login", {
-					method: "POST", // or 'POST'
+					method: "POST",
 					body: JSON.stringify({
 						username: user,
 						password: password
@@ -53,6 +54,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 			LogOut: () => {
 				sessionStorage.removeItem("token");
 				setStore({ tokenS: "" });
+			},
+
+			handleRegister: async (name, lastname, email, username, password) => {
+				await fetch("https://3000-amethyst-krill-i0j4c55p.ws-us03.gitpod.io/user", {
+					method: "POST", // or 'POST'
+					body: JSON.stringify({
+						name: name,
+						lastname: lastname,
+						username: username,
+						email: email,
+						password: password
+					}),
+					headers: {
+						"Content-Type": "application/json"
+					}
+				})
+					.then(res => {
+						if (res.status != 200) {
+							setStore({ registerProblem: "Some fields are missing" });
+						} else {
+							setStore({ registerProblem: null });
+							return res.json();
+						}
+					})
+					.then(data => {
+						console.log("data: ", data);
+					})
+					.catch(err => console.error("Error ", err));
 			},
 
 			getFavCharacters: index => {

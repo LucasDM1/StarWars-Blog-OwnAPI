@@ -7,12 +7,13 @@ import { Planets } from "./views/planets";
 import { Home } from "./views/home";
 import { CharactersDet } from "./views/charactersDetails";
 import { PlanetsDet } from "./views/planetsDetails";
-
+import { Carousel } from "./views/carousel";
+import { Register } from "./views/register";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-import { Carousel } from "./views/carousel";
+
 import { NavLog } from "./component/navlog";
 //create your first component
 const Layout = () => {
@@ -28,6 +29,10 @@ const Layout = () => {
 						<Route exact path="/">
 							<NavLog />
 							<Home />
+						</Route>
+						<Route exact path="/register">
+							<NavLog />
+							<Register />
 						</Route>
 
 						<Route exact path="/home">

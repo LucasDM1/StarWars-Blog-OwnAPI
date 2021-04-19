@@ -16,7 +16,7 @@ export const Home = () => {
 		return null;
 	} else {
 		return (
-			<div className="container-fluid" id="login">
+			<div className="container-fluid m-0 w-100 h-100" id="login">
 				<div className="row">
 					<div className="col-6 pl-5 mb-5">
 						<h1 id="yellow">Learn about the amazing universe of Star Wars with this database</h1>
@@ -79,9 +79,11 @@ export const Home = () => {
 									type="button">
 									Log In
 								</button>
-								<button className="btn btn-outline-warning ml-1" type="button">
-									Register
-								</button>
+								<Link to="/register">
+									<button className="btn btn-outline-warning ml-1" type="button">
+										Register
+									</button>
+								</Link>
 							</div>
 						</div>
 					</div>
